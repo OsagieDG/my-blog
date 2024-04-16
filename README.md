@@ -1,1 +1,0 @@
-# osag1e.dev

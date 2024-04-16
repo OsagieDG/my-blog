@@ -40,3 +40,4 @@ function myFunction() {
         moonIcon.style.color = "#000";
     }
 }
+
