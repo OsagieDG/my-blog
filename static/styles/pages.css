@@ -1,0 +1,165 @@
+html {
+    overflow-y: scroll;
+}
+
+:root {
+    --bgcolor: white;
+    --fontcolor: #1f1f1f;
+    --linkcolor: #00e;
+    --visitedcolor: #551a8b;
+    --precolor: #fff;
+    --prebgcolor: #1f1f1f;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bgcolor: white;
+        --fontcolor: #1f1f1f;
+        --linkcolor: #5bf;
+        --visitedcolor: #ae5ee0;
+        --precolor: white;
+        --prebgcolor: #383838;
+    }
+}
+
+body {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 10px;
+    font: 16px/1.9 'Roboto', sans-serif;
+    color: var(--fontcolor);
+    background: var(--bgcolor);
+}
+
+header, nav, main, footer {
+    padding: 2px calc((100% - 800px) / 2) 0;
+}
+
+
+.text-sm {
+    font-size: 13px; 
+    line-height: 1.6; 
+    color: #666; 
+}
+
+a:link {
+    color: var(--linkcolor);
+}
+
+a:visited {
+    color: var(--visitedcolor);
+}
+
+a:active {
+    color: var(--visitedcolor);
+}
+
+h1, h2, h3 {
+    font: monospace;
+    line-height: 1.2;
+}
+
+p > code {
+    color: var(--precolor);
+    background: var(--prebgcolor);
+    padding: 2px;
+}
+
+pre {
+    color: var(--precolor);
+    background: var(--prebgcolor);
+    padding: 24px;
+    overflow-x: auto;
+}
+
+article {
+    padding: 24px 0;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+figcaption {
+    color: #888;
+    font: 12px/1.5 monospace;
+    text-align: center;
+}
+
+figure {
+    margin: auto;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.dark-mode {
+    background: #1f1f1f;
+    color: white;
+}
+
+body {
+    position: relative;
+}
+
+.toggle-button {
+    position: absolute;
+    top: 13px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    color: var(--fontcolor);
+    font-size: 1.1em; 
+}
+
+/* Add this CSS at the end of your existing CSS file */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: lightblue;
+    margin-bottom: 20px; /* Adjust the margin as needed */
+    border-bottom: 2px solid var(--bordercolor); /* Add a border to make it straight */
+}
+
+.links {
+    display: flex;
+}
+
+.link {
+    margin-right: 20px;
+    text-decoration: none;
+    color: var(--linkcolor);
+}
+
+/* Additional style to give some spacing above the image */
+img {
+    margin-top: 20px; 
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+
+footer {
+    margin-top: 40px;
+    border-top: 1px solid #E4E5E7;
+    padding-top: 17px;
+    padding-bottom: 15px;
+    background: white;
+    height: 60px;
+    color: #6A6C6F;
+    text-align: center;
+}
