@@ -1,16 +1,16 @@
 .content img {
-      width: 300px; /* Adjust the width of the main content image */
-      height: auto; /* Maintain aspect ratio */
-      border-radius: 10px; /* Apply border-radius to create rounded corners */
-      float: left; /* Float the image to the left */
-      margin-right: 20px; /* Add some margin to the right of the image */
+      width: 300px;
+      height: auto; 
+      border-radius: 10px; 
+      float: left; 
+      margin-right: 20px; 
     }
 
     .author-img {
-      width: 50px; /* Adjust the width of the author image */
-      height: 50px; /* Adjust the height of the author image */
-      border-radius: 50%; /* Make the author image round */
-      float: left; /* Float the author image to the left */
-      margin-right: 10px; /* Add some margin to the right of the author image */
+      width: 50px;
+      height: 50px; 
+      border-radius: 50%;
+      float: left; 
+      margin-right: 10px; 
     }
 
