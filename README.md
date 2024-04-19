@@ -1,5 +1,4 @@
-https://osag1e-6k52auhj3a-ez.a.run.app
-
+https://osag1e.dev
 
 ## Use this commands to deploy the docker container to your gcloud account
 - First step: 
