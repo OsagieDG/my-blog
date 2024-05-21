@@ -1,6 +1,6 @@
 /* Additional styling for blog post previews */
 .blog-list ul li {
-    margin-top: 40px;
+    margin-top: 50px;
     margin-bottom: 40px;
     padding-bottom: 20px;
     overflow: hidden; /* Ensure the image doesn't overflow */
@@ -9,7 +9,7 @@
 }
 
 .blog-list ul li .preview-image {
-    margin-bottom: 10px; /* Add some space between the image and the post information */
+    margin-bottom: 20px; /* Add some space between the image and the post information */
 }
 
 .blog-list ul li .preview-image img {
