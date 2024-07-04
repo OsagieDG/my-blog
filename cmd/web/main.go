@@ -28,6 +28,8 @@ func main() {
 
 	r.Get("/blog2", blog2Handler)
 
+	r.Get("/blog3", blog3Handler)
+
 	fmt.Println("Server is running on :8080")
 	err := http.ListenAndServe(":8080", r)
 	if err != nil {
@@ -53,6 +55,10 @@ func blog1Handler(w http.ResponseWriter, r *http.Request) {
 
 func blog2Handler(w http.ResponseWriter, r *http.Request) {
 	serveFile(w, r, "tmpl/blog/blog2/blog2.tmpl")
+}
+
+func blog3Handler(w http.ResponseWriter, r *http.Request) {
+	serveFile(w, r, "tmpl/blog/blog3/blog3.tmpl")
 }
 
 func serveFile(w http.ResponseWriter, r *http.Request, filePath string) {
