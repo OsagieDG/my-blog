@@ -2,13 +2,22 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
+
+var templates = map[string]*template.Template{
+	"index": parseTemplate("tmpl/index.tmpl"),
+	"about": parseTemplate("tmpl/about.tmpl"),
+	"posts": parseTemplate("tmpl/posts.tmpl"),
+	"blog1": parseTemplate("tmpl/blog/blog1/blog1.tmpl"),
+	"blog2": parseTemplate("tmpl/blog/blog2/blog2.tmpl"),
+	"blog3": parseTemplate("tmpl/blog/blog3/blog3.tmpl"),
+}
 
 func main() {
 	r := chi.NewRouter()
@@ -18,17 +27,12 @@ func main() {
 
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	r.Get("/", handler)
-
-	r.Get("/about", aboutHandler)
-
-	r.Get("/posts", postsHandler)
-
-	r.Get("/blog1", blog1Handler)
-
-	r.Get("/blog2", blog2Handler)
-
-	r.Get("/blog3", blog3Handler)
+	r.Get("/", handler("index"))
+	r.Get("/about", handler("about"))
+	r.Get("/posts", handler("posts"))
+	r.Get("/blog1", handler("blog1"))
+	r.Get("/blog2", handler("blog2"))
+	r.Get("/blog3", handler("blog3"))
 
 	fmt.Println("Server is running on :8080")
 	err := http.ListenAndServe(":8080", r)
@@ -37,45 +41,20 @@ func main() {
 	}
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	serveFile(w, r, "tmpl/index.tmpl")
-}
-
-func aboutHandler(w http.ResponseWriter, r *http.Request) {
-	serveFile(w, r, "tmpl/about.tmpl")
-}
-
-func postsHandler(w http.ResponseWriter, r *http.Request) {
-	serveFile(w, r, "tmpl/posts.tmpl")
-}
-
-func blog1Handler(w http.ResponseWriter, r *http.Request) {
-	serveFile(w, r, "tmpl/blog/blog1/blog1.tmpl")
-}
-
-func blog2Handler(w http.ResponseWriter, r *http.Request) {
-	serveFile(w, r, "tmpl/blog/blog2/blog2.tmpl")
-}
-
-func blog3Handler(w http.ResponseWriter, r *http.Request) {
-	serveFile(w, r, "tmpl/blog/blog3/blog3.tmpl")
-}
-
-func serveFile(w http.ResponseWriter, r *http.Request, filePath string) {
-	file, err := os.Open(filePath)
-	checkError(w, err)
-	defer file.Close()
-
-	fi, err := file.Stat()
-	checkError(w, err)
-
-	http.ServeContent(w, r, fi.Name(), fi.ModTime(), file)
-}
-
-func checkError(w http.ResponseWriter, err error) {
-	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		log.Println("Error opening file:", err)
-		return
+func handler(name string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		err := templates[name].Execute(w, nil)
+		if err != nil {
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+			log.Println("Error rendering template:", err)
+		}
 	}
+}
+
+func parseTemplate(filePath string) *template.Template {
+	tmpl, err := template.ParseFiles(filePath)
+	if err != nil {
+		log.Fatalf("Error parsing template %s: %v", filePath, err)
+	}
+	return tmpl
 }

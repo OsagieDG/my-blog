@@ -1,6 +1,9 @@
 # Use an official Golang runtime as a parent image
 FROM golang:1.20.3-alpine
 
+# Install air
+RUN go install github.com/air-verse/air@v1.52.3
+
 # Set the working directory to /app
 WORKDIR /app
 
@@ -16,6 +19,5 @@ COPY . .
 # Build the Go application
 RUN go build -o bin/app ./cmd/web
 
-# Set the entry point of the container to the executable
-CMD ["./bin/app"]
-
+# Set the entry point of the container to air
+CMD ["air", "-c", ".air.toml"]

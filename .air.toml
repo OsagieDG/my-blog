@@ -1,0 +1,9 @@
+[build]
+cmd = "go build -o bin/app cmd/web/main.go"
+bin = "bin/app"
+include_ext = ["go", "tmpl", "html", "css"]
+
+[run]
+cmd = "./bin/app"
+restart_on_rebuild = true
+watch_dir = ["."]
