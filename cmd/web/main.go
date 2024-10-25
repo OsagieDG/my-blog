@@ -28,7 +28,6 @@ func main() {
 	r.Get("/posts", handler("posts"))
 	r.Get("/blog1", handler("blog1"))
 
-	// Start the server
 	fmt.Println("Server is running on :8080")
 	err := http.ListenAndServe(":8080", r)
 	if err != nil {
