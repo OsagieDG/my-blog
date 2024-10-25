@@ -1,100 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+{{template "layout" .}}
 
-<head>
-    <meta charset="UTF-8">
-    <title>My Projects</title>
-    <meta property="og:title" content="My Projects">
-    <meta property="og:url" content="https://osagie.gg/posts">
-    <meta property="og:description" content="Explore my projects and their links on GitHub.">
-    <meta property="og:type" content="website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/static/styles/pages.css">
-    <link rel="stylesheet" href="/static/styles/pagination.css">
-    <link rel="stylesheet" href="/static/styles/preview.css">
-    <script src="/static/js/dark-mode.js" defer></script>
-    <script src="/static/js/pagination.js" defer></script>  
-</head>
+{{define "title"}}Blog Posts{{end}}
 
-<body>
-    <nav class="navbar">
-        <div class="links">
-            <a class="link" href="/">Home</a>
-            <a class="link" href="about">About</a>
-        </div>
+{{define "main"}}
+<div class="header">
+    <h1 style="color: lightblue;">Blog Posts</h1>
+</div>
 
-        <button onclick="myFunction()" id="darkModeToggle" class="toggle-button">
-            <i class="fas fa-sun"></i>
-            <i class="fas fa-moon"></i>
-        </button>
-    </nav>
-
-    <div class="header">
-        <h1 style="color: lightblue;">Blog Posts</h1>
-    </div>
-
-    <div class="blog-list">
-        <ul>
-            <li>
-                <div class="preview-image">
-                <a href="blog3"><img src="static/images/oasis.jpeg" alt="Blog 3 Image"></a>
+<div class="blog-list">
+    <ul>
+        <li>
+            <div class="preview-image">
+                <a href="blog1"><img src="static/images/keys.jpeg" alt="Blog 1 Image"></a>
+            </div>
+            <div class="post-info">
+                <h3><a href="blog1">PATs for secure GitHub authentication</a></h3>
+                <p>How and why I generate and use Personal Access Tokens for secure GitHub operations <a href="blog1"> Read Blog...</a></p>
+                <div class="text-sm">
+                    By Osagie Godstand on Jun 20, 2024
                 </div>
-                <div class="post-info">
-                    <h3><a href="blog3">Neovim & Tmux Saved My Linux PC</a></h3>
-                    <p>Neovim and Tmux allow you to do what code editors like VSCode and IDEs can do, while maintaining minimalism and improving efficiency <a href="blog3"> Read Blog...</a></p>
-                     <div class="text-sm">
-                      By Osagie Godstand
-                      on Jul 04, 2024
-                      </div>
-                    </div>
-            </li>
-        <ul>
-            <li>
-                <div class="preview-image">
-                <a href="blog2"><img src="static/images/keys.jpeg" alt="Blog 2 Image"></a>
-                </div>
-                <div class="post-info">
-                    <h3><a href="blog2">PATs for secure GitHub authentication</a></h3>
-                    <p>How and why I generate and use Personal Access Tokens for secure GitHub operations <a href="blog2"> Read Blog...</a></p>
-                     <div class="text-sm">
-                      By Osagie Godstand
-                      on Jun 20, 2024
-                      </div>
-                    </div>
-            </li>
-            <li>
-                <div class="preview-image">
-                <a href="blog1"><img src="static/images/jtl.jpeg" alt="Blog 1 Image"></a>
-                </div>
-                <div class="post-info">
-                    <h3><a href="blog1">My Journey into Linux</a></h3>
-                    <p>As a primarily devoted Mac user, my journey into the Linux realm was carefully guided by the distinct qualities of Pop!_OS <a href="blog1"> Read Blog...</a></p>
-                     <div class="text-sm">
-                      By Osagie Godstand
-                      on Apr 17, 2024
-                      </div>
-                    </div>
-            </li>
-        </ul>
-    </div>
+            </div>
+        </li>
+    </ul>
+</div>
 
-    <p><strong>Check out my:</strong></p>
-    <div class="o-links">
-        <a class="o-link" href="https://github.com/osag1e" style="font-size: 24px; margin-right: 10px;"><i class="fab fa-github"></i></a>
-        <a class="o-link" href="https://www.instagram.com/osagie_25/?igsh=MWFjYzRsejVxY3pqZg%3D%3D&utm_source=qr" style="font-size: 24px; margin-right: 10px;"><i class="fab fa-instagram"></i></a>
-    </div> 
+<p><strong>Check out my:</strong></p>
+<div class="o-links">
+    <a class="o-link" href="https://github.com/osag1e" style="font-size: 24px; margin-right: 10px;"><i class="fab fa-github"></i></a>
+    <a class="o-link" href="https://www.instagram.com/osagie_25/?igsh=MWFjYzRsejVxY3pqZg%3D%3D&utm_source=qr" style="font-size: 24px; margin-right: 10px;"><i class="fab fa-instagram"></i></a>
+</div>
 
-    <div class="pagination"></div>
+<div class="pagination"></div>
 
-    <footer>
-        <div class="footer">
-            <p>&copy; 2024 <a href="/"><b>Osagie Godstand</b></a>.</p>
-        </div>
-    </footer>
-</body>
-</html>
+<script src="/static/js/pagination.js"></script>  
 
+{{end}}

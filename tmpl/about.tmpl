@@ -1,57 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{{template "layout" .}}
 
-<head>
-  <meta charset="UTF-8">
-    <title>My Projects</title>
-    <meta property="og:title" content="My Projects">
-    <meta property="og:url" content="https://osagie.gg/posts">
-    <meta property="og:description" content="Explore my projects and their links on GitHub.">
-    <meta property="og:type" content="website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/static/styles/pages.css">
-    <script src="/static/js/dark-mode.js" defer></script>
-</head>
+{{define "title"}}About Me{{end}} 
+{{define "main"}}
+<div class="title">
+    <h1 style="color: lightblue;">About Me</h1>
+</div>
 
-<body>
-    <nav class="navbar">
-        <div class="links">
-            <a class="link" href="/">Home</a>
-            <a class="link" href="posts">Posts</a>
-        </div>
-
-        <button onclick="myFunction()" id="darkModeToggle" class="toggle-button">
-            <i class="fas fa-sun"></i>
-            <i class="fas fa-moon"></i>
-        </button>
-    </nav>
-
-
-    <div class="title">
-        <h1 style="color: lightblue;">About Me</h1>
-    </div>
- 
-    <div class="image-container">
+<div class="image-container">
     <img src="static/images/lbr.jpeg" width="200" height="200" style="border-radius: 6px;">
-    </div>
+</div>
 
-    <div class="description">
+<div class="description">
     <p><strong>Hi, I'm Osagie.</strong></p>
-        <p> I'm a software developer who's passionate about creating software that provides value and prioritizes a great user experience. I have a diverse skill set, and I particularly enjoy working with Go.</p>
-        <p> Outside of software development, I also enjoy hitting the gym, travelling, spending time with family and friends as well as striving for personal growth both physically and intellectually.</p>
-        <p><strong>Explore my:<strong></p>
-        <p><a href="/posts">Posts</a></p>
-    </div>
+    <p>I'm a software developer who's passionate about creating software that provides value and prioritizes a great user experience. I have a diverse skill set, and I particularly enjoy working with Go.</p>
+    <p>Outside of software development, I also enjoy hitting the gym, travelling, spending time with family and friends, as well as striving for personal growth both physically and intellectually.</p>
+    <p><strong>Explore my:</strong></p>
+    <p><a href="/posts">Posts</a></p>
+</div>
+{{end}}
 
-    <footer>
-    <div class="footer">
-    <p>&copy; 2024 <a href="/"><b>Osagie Godstand</b></a>.</p>
-    </div>
-    </footer>
-</body>
-</html>
 

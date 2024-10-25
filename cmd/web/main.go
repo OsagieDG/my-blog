@@ -10,16 +10,11 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 )
 
-var templates = map[string]*template.Template{
-	"index": parseTemplate("tmpl/index.tmpl"),
-	"about": parseTemplate("tmpl/about.tmpl"),
-	"posts": parseTemplate("tmpl/posts.tmpl"),
-	"blog1": parseTemplate("tmpl/blog/blog1/blog1.tmpl"),
-	"blog2": parseTemplate("tmpl/blog/blog2/blog2.tmpl"),
-	"blog3": parseTemplate("tmpl/blog/blog3/blog3.tmpl"),
-}
+var templates = map[string]*template.Template{}
 
 func main() {
+	templates = parseTemplates()
+
 	r := chi.NewRouter()
 
 	r.Use(middleware.Logger)
@@ -27,13 +22,11 @@ func main() {
 
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	r.Get("/", handler("index"))
-	r.Get("/about", handler("about"))
+	r.Get("/", handler("about"))
 	r.Get("/posts", handler("posts"))
 	r.Get("/blog1", handler("blog1"))
-	r.Get("/blog2", handler("blog2"))
-	r.Get("/blog3", handler("blog3"))
 
+	// Start the server
 	fmt.Println("Server is running on :8080")
 	err := http.ListenAndServe(":8080", r)
 	if err != nil {
@@ -43,7 +36,12 @@ func main() {
 
 func handler(name string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		err := templates[name].Execute(w, nil)
+		tmpl, ok := templates[name]
+		if !ok {
+			http.Error(w, "Template not found", http.StatusNotFound)
+			return
+		}
+		err := tmpl.ExecuteTemplate(w, "layout", nil)
 		if err != nil {
 			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 			log.Println("Error rendering template:", err)
@@ -51,10 +49,25 @@ func handler(name string) http.HandlerFunc {
 	}
 }
 
-func parseTemplate(filePath string) *template.Template {
-	tmpl, err := template.ParseFiles(filePath)
+func parseTemplates() map[string]*template.Template {
+	layout := "tmpl/layout.tmpl"
+	about := "tmpl/about.tmpl"
+	posts := "tmpl/posts.tmpl"
+	blog1 := "tmpl/blog/blog1/blog1.tmpl"
+
+	templates := map[string]*template.Template{
+		"about": parseTemplateFiles(layout, about),
+		"posts": parseTemplateFiles(layout, posts),
+		"blog1": parseTemplateFiles(layout, blog1),
+	}
+
+	return templates
+}
+
+func parseTemplateFiles(files ...string) *template.Template {
+	tmpl, err := template.ParseFiles(files...)
 	if err != nil {
-		log.Fatalf("Error parsing template %s: %v", filePath, err)
+		log.Fatalf("Error parsing templates: %v", err)
 	}
 	return tmpl
 }
