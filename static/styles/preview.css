@@ -1,15 +1,13 @@
-/* Additional styling for blog post previews */
 .blog-list ul li {
     margin-top: 50px;
     margin-bottom: 40px;
     padding-bottom: 20px;
     overflow: hidden; /* Ensure the image doesn't overflow */
     position: relative; /* Position the image relative to its container */
-   /* border-bottom: 1px solid #ccc; /* Add a border bottom between each blog post */
 }
 
 .blog-list ul li .preview-image {
-    margin-bottom: 20px; /* Add some space between the image and the post information */
+    margin-bottom: 20px; 
 }
 
 .blog-list ul li .preview-image img {

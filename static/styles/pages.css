@@ -121,7 +121,6 @@ body {
     font-size: 1.1em; 
 }
 
-/* Add this CSS at the end of your existing CSS file */
 
 .navbar {
     display: flex;
@@ -143,7 +142,6 @@ body {
     color: var(--linkcolor);
 }
 
-/* Additional style to give some spacing above the image */
 img {
     margin-top: 20px; 
     display: block;
