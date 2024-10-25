@@ -23,6 +23,8 @@ func main() {
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	r.Get("/", handler("about"))
+	r.Get("/about", handler("about"))
+	r.Get("/tools", handler("tools"))
 	r.Get("/posts", handler("posts"))
 	r.Get("/blog1", handler("blog1"))
 
@@ -52,11 +54,13 @@ func handler(name string) http.HandlerFunc {
 func parseTemplates() map[string]*template.Template {
 	layout := "tmpl/layout.tmpl"
 	about := "tmpl/about.tmpl"
+	tools := "tmpl/tools.tmpl"
 	posts := "tmpl/posts.tmpl"
 	blog1 := "tmpl/blog/blog1/blog1.tmpl"
 
 	templates := map[string]*template.Template{
 		"about": parseTemplateFiles(layout, about),
+		"tools": parseTemplateFiles(layout, tools),
 		"posts": parseTemplateFiles(layout, posts),
 		"blog1": parseTemplateFiles(layout, blog1),
 	}
