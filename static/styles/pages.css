@@ -127,6 +127,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    height: 32px;
     background-color: lightblue;
     margin-bottom: 20px; /* Adjust the margin as needed */
     border-bottom: 2px solid var(--bordercolor); /* Add a border to make it straight */
@@ -154,10 +155,10 @@ img {
 footer {
     margin-top: 40px;
     border-top: 1px solid #E4E5E7;
-    padding-top: 17px;
-    padding-bottom: 15px;
+    padding-top: 0px;
+    padding-bottom: 32px;
     background: white;
-    height: 60px;
+    height: 27px;
     color: #6A6C6F;
     text-align: center;
 }
