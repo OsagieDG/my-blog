@@ -1,69 +1,35 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const itemsPerPage = 1; // Number of items per page
+    const itemsPerPage = 1;
     const items = document.querySelectorAll('.blog-list ul li');
-    const numPages = Math.ceil(items.length / itemsPerPage); // Calculate the number of pages
-
-    // Retrieve current page from localStorage or default to 1 if not found
+    const numPages = Math.ceil(items.length / itemsPerPage);
     let currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
 
     function showPage(page) {
-        const startIndex = (page - 1) * itemsPerPage;
-        const endIndex = page * itemsPerPage;
-
-        items.forEach((item, index) => {
-            if (index >= startIndex && index < endIndex) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
+        items.forEach((item, index) => item.style.display = index >= (page - 1) * itemsPerPage && index < page * itemsPerPage ? 'block' : 'none');
     }
-
-    showPage(currentPage);
 
     function updatePagination() {
         const paginationContainer = document.querySelector('.pagination');
         paginationContainer.innerHTML = '';
 
-        const prevButton = document.createElement('button');
-        prevButton.textContent = 'Previous';
-        prevButton.addEventListener('click', function() {
-            if (currentPage > 1) {
-                currentPage--;
-                localStorage.setItem('currentPage', currentPage); // Save current page to localStorage
-                showPage(currentPage);
-                updatePagination();
-            }
-        });
-        paginationContainer.appendChild(prevButton);
-
-        for (let i = 1; i <= numPages; i++) {
+        const createButton = (text, page) => {
             const button = document.createElement('button');
-            button.textContent = i;
-            button.addEventListener('click', function() {
-                currentPage = i;
-                localStorage.setItem('currentPage', currentPage); // Save current page to localStorage
+            button.textContent = text;
+            button.disabled = page === currentPage;
+            button.addEventListener('click', () => {
+                currentPage = page;
+                localStorage.setItem('currentPage', currentPage);
                 showPage(currentPage);
                 updatePagination();
             });
-            if (i === currentPage) {
-                button.disabled = true;
-            }
-            paginationContainer.appendChild(button);
-        }
+            return button;
+        };
 
-        const nextButton = document.createElement('button');
-        nextButton.textContent = 'Next';
-        nextButton.addEventListener('click', function() {
-            if (currentPage < numPages) {
-                currentPage++;
-                localStorage.setItem('currentPage', currentPage); // Save current page to localStorage
-                showPage(currentPage);
-                updatePagination();
-            }
-        });
-        paginationContainer.appendChild(nextButton);
+        paginationContainer.appendChild(createButton('Previous', currentPage > 1 ? currentPage - 1 : 1));
+        for (let i = 1; i <= numPages; i++) paginationContainer.appendChild(createButton(i, i));
+        paginationContainer.appendChild(createButton('Next', currentPage < numPages ? currentPage + 1 : numPages));
     }
 
+    showPage(currentPage);
     updatePagination();
 });
