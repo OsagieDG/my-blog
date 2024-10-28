@@ -26,6 +26,7 @@ func main() {
 	r.Get("/about", handler("about"))
 	r.Get("/tools", handler("tools"))
 	r.Get("/posts", handler("posts"))
+	r.Get("/blog", handler("blog"))
 	r.Get("/blog1", handler("blog1"))
 
 	fmt.Println("Server is running on :8080")
@@ -55,12 +56,14 @@ func parseTemplates() map[string]*template.Template {
 	about := "tmpl/about.tmpl"
 	tools := "tmpl/tools.tmpl"
 	posts := "tmpl/posts.tmpl"
+	blog := "tmpl/blog/og-blog.tmpl"
 	blog1 := "tmpl/blog/blog1/blog1.tmpl"
 
 	templates := map[string]*template.Template{
 		"about": parseTemplateFiles(layout, about),
 		"tools": parseTemplateFiles(layout, tools),
 		"posts": parseTemplateFiles(layout, posts),
+		"blog":  parseTemplateFiles(layout, blog),
 		"blog1": parseTemplateFiles(layout, blog1),
 	}
 
