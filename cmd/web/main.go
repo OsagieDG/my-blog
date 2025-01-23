@@ -6,8 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
+	"github.com/osag1e/logstack/service/middleware"
 )
 
 var templates = map[string]*template.Template{}
@@ -15,22 +14,25 @@ var templates = map[string]*template.Template{}
 func main() {
 	templates = parseTemplates()
 
-	r := chi.NewRouter()
+	router := http.NewServeMux()
 
-	r.Use(middleware.Logger)
-	r.Use(middleware.Recoverer)
+	router.Handle("GET /static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	router.HandleFunc("GET /", handler("about"))
+	router.HandleFunc("GET /about", handler("about"))
+	router.HandleFunc("GET /tools", handler("tools"))
+	router.HandleFunc("GET /posts", handler("posts"))
+	router.HandleFunc("GET /blog", handler("blog"))
+	router.HandleFunc("GET /blog1", handler("blog1"))
 
-	r.Get("/", handler("about"))
-	r.Get("/about", handler("about"))
-	r.Get("/tools", handler("tools"))
-	r.Get("/posts", handler("posts"))
-	r.Get("/blog", handler("blog"))
-	r.Get("/blog1", handler("blog1"))
+	logstack := middleware.LogStack(
+		middleware.LogRequest,
+		middleware.LogResponse,
+		middleware.RecoverPanic,
+	)
 
 	fmt.Println("Server is running on :8080")
-	err := http.ListenAndServe(":8080", r)
+	err := http.ListenAndServe(":8080", logstack(router))
 	if err != nil {
 		log.Fatal("Error starting server: ", err)
 	}

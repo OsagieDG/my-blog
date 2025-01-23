@@ -1,2 +1,2 @@
-github.com/go-chi/chi/v5 v5.0.12 h1:9euLV5sTrTNTRUU9POmDUvfxyj6LAABLUcEWO+JJb4s=
-github.com/go-chi/chi/v5 v5.0.12/go.mod h1:DslCQbL2OYiznFReuXYUmQ2hGd1aDpCnlMNITLSKoi8=
+github.com/osag1e/logstack v1.0.1 h1:B5aSdg1LC2Kp71heCOfw0NaMvdI3ZGEoGEhgi0c3xNc=
+github.com/osag1e/logstack v1.0.1/go.mod h1:SXQkwdzZlQLtzJV+sfQ61XGlGS1shfqzSuDVjikyZ9M=
