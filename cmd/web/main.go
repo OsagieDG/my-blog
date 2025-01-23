@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/osag1e/logstack/service/middleware"
 )
 
@@ -14,16 +15,16 @@ var templates = map[string]*template.Template{}
 func main() {
 	templates = parseTemplates()
 
-	router := http.NewServeMux()
+	router := chi.NewRouter()
 
-	router.Handle("GET /static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	router.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	router.HandleFunc("GET /", handler("about"))
-	router.HandleFunc("GET /about", handler("about"))
-	router.HandleFunc("GET /tools", handler("tools"))
-	router.HandleFunc("GET /posts", handler("posts"))
-	router.HandleFunc("GET /blog", handler("blog"))
-	router.HandleFunc("GET /blog1", handler("blog1"))
+	router.Get("/", handler("about"))
+	router.Get("/about", handler("about"))
+	router.Get("/tools", handler("tools"))
+	router.Get("/posts", handler("posts"))
+	router.Get("/blog", handler("blog"))
+	router.Get("/blog1", handler("blog1"))
 
 	logstack := middleware.LogStack(
 		middleware.LogRequest,
