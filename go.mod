@@ -1,4 +1,4 @@
-module github.com/osag1e/osag1e.dev
+module github.com/OsagieDG/osagiedg.me
 
 go 1.23
 
