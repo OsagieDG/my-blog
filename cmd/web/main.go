@@ -6,8 +6,8 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/OsagieDG/mlog/service/middleware"
 	"github.com/go-chi/chi/v5"
-	"github.com/osag1e/logstack/service/middleware"
 )
 
 var templates = map[string]*template.Template{}
@@ -26,7 +26,7 @@ func main() {
 	router.Get("/blog", handler("blog"))
 	router.Get("/blog1", handler("blog1"))
 
-	logstack := middleware.LogStack(
+	logstack := middleware.MLog(
 		middleware.LogRequest,
 		middleware.LogResponse,
 		middleware.RecoverPanic,
