@@ -26,14 +26,14 @@ func main() {
 	router.Get("/blog", handler("blog"))
 	router.Get("/blog1", handler("blog1"))
 
-	logstack := middleware.MLog(
+	mlog := middleware.MLog(
 		middleware.LogRequest,
 		middleware.LogResponse,
 		middleware.RecoverPanic,
 	)
 
 	fmt.Println("Server is running on :8080")
-	err := http.ListenAndServe(":8080", logstack(router))
+	err := http.ListenAndServe(":8080", mlog(router))
 	if err != nil {
 		log.Fatal("Error starting server: ", err)
 	}
