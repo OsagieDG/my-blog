@@ -3,9 +3,7 @@
   margin-bottom: 40px;
   padding-bottom: 20px;
   overflow: hidden;
-  /* Ensure the image doesn't overflow */
   position: relative;
-  /* Position the image relative to its container */
 }
 
 .blog-list ul li .preview-image {
@@ -14,18 +12,14 @@
 
 .blog-list ul li .preview-image img {
   width: 400px;
-  /* Adjust the width of the image */
   height: 260px;
   border-radius: 5px;
-  float: left;
-  /* Align the image to the left */
+  float: right;
   margin-right: 20px;
-  /* Add some space between the image and the post information */
 }
 
 .blog-list ul li .post-info {
-  text-align: left;
-  /* Align the post information to the right */
+  text-align: bottom;
 }
 
 .blog-list ul li .post-info h3 {
