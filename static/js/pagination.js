@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const itemsPerPage = 1;
+  const itemsPerPage = 2;
   const items = document.querySelectorAll('.blog-list ul li');
   const numPages = Math.ceil(items.length / itemsPerPage);
   let currentPage = parseInt(localStorage.getItem('currentPage')) || 1;
