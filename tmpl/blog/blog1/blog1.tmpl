@@ -17,38 +17,85 @@
   </div>
 
   <div class="content">
-  <p>I believe Personal Access Tokens (PATs) are a great way to securely authenticate git operations for GitHub. In this blog, I will demonstrate and explain how and why I use PATs for secure GitHub authentication. One main reason for this post is that I recently created an automation tool called <a href="https://github.com/OsagieDG/sap.git">SAP</a> that allows anyone to easily switch between multiple GitHub accounts without the hassle of SSH keys.</p>
+  <p>
+  I believe Personal Access Tokens (PATs) are a great way to securely
+  authenticate git operations for GitHub. In this blog, I will demonstrate
+  and explain how and why I use PATs for secure GitHub authentication.
+  One main reason for this post is that I recently created an automation
+  tool called <a href="https://github.com/OsagieDG/sap.git">SAP</a> that
+  allows anyone to easily switch between multiple GitHub accounts without
+  the hassle of SSH keys.
+  </p>
 
   <h2>Disclaimer</h2>
-  <p>I am not going to argue about SSH vs. HTTPS for managing GitHub accounts, as I believe both are great options that can also be used together. This is simply my opinion on the best method for securely authenticating any git operations. I could be wrong and might change my opinion in the future, so please take this information with a grain of salt.</p>
+  <p>
+  I am not going to argue about SSH vs. HTTPS for managing GitHub accounts,
+  as I believe both are great options that can also be used together. This
+  is simply my opinion on the best method for securely authenticating any
+  git operations. I could be wrong and might change my opinion in the future,
+  so please take this information with a grain of salt.
+  </p>
 
   <h2>Why I Use PATs</h2>
 
-  <p>When you have multiple GitHub accounts and need to switch between them while securely authenticating the operations of those accounts without using SSH keys, Personal Access Tokens (PATs) are essential. This is due to their flexibility, which allows you to choose the lifespan of your Personal Access Tokens as well as select the type of access you want a PAT to have. In my opinion, this flexibility and customizability are the main reasons why I use PATs.</p>
+  <p>
+  When you have multiple GitHub accounts and need to switch between them while
+  securely authenticating the operations of those accounts without using SSH keys,
+  Personal Access Tokens (PATs) are essential. This is due to their flexibility,
+  which allows you to choose the lifespan of your Personal Access Tokens as well as
+  select the type of access you want a PAT to have. In my opinion, this flexibility
+  and customizability are the main reasons why I use PATs.
+  </p>
 
   <h2>How to Create PATs</h2>
   <p>To create a PAT, follow these steps:</p>
   <ol>
   <li>Click on Settings.</li>
   <li>Navigate to Developer Settings.</li>
-  <li>Click on Generate new token (classic) from the Personal Access Tokens section.</li>
+  <li>
+  Click on Generate new token (classic) from the
+  Personal Access Tokens section.
+  </li>
   <li>Customize your PAT settings.</li>
-  <li>After customizing, click Generate Token. Your newly generated token should resemble the one shown in the image.</li>
+  <li>
+  After customizing, click Generate Token.
+  Your newly generated token should resemble
+  the one shown in the image.
+  </li>
   </ol>
   <img src="static/images/gt5.jpeg" alt="generate token" loading="lazy">
 
   <h2>Using a PAT</h2>
-  <p>You will need to use a PAT because you cannot use your GitHub account password for authentication. Your PAT should authenticate any Git operation based on the permissions you granted to it. </p>
+  <p>
+  You will need to use a PAT because you cannot use your GitHub account
+  password for authentication. Your PAT should authenticate any Git operation
+  based on the permissions you granted to it.
+  </p>
 
   <img src="static/images/authenticate.jpeg" alt="generate token" loading="lazy">
 
   <h2>The Good and Downside of Using PATs</h2>
 
-  <p>The only downside of using PATs, in my opinion, is that you are responsible for storing the token that is generated and ensuring it is stored securely to prevent getting hacked. However, I believe the advantages of PATs can be used to mitigate this downside. PATs give you the ability to set a very short lifespan and customize the operations a specific token can access. Additionally, you can always delete tokens after each working session and create a new token when you start a new session to avoid the downside. This flexibility provides many creative ways to use PATs securely.</p>
+  <p>
+  The only downside of using PATs, in my opinion, is that you are responsible for
+  storing the token that is generated and ensuring it is stored securely to prevent
+  getting hacked. However, I believe the advantages of PATs can be used to mitigate
+  this downside. PATs give you the ability to set a very short lifespan and customize
+  the operations a specific token can access. Additionally, you can always delete
+  tokens after each working session and create a new token when you start a new
+  session to avoid the downside. This flexibility provides many creative ways to
+  use PATs securely.
+  </p>
 
   <h2>To Conclude</h2>
 
-  <p>I hope you have gained something valuable from this blog. If you like PATs, then I think you should also consider using <a href="https://github.com/OsagieDG/sap.git">SAP</a>, the automation tool that allows you to switch between multiple GitHub accounts. Thanks for reading!</p>
+  <p>
+  I hope you have gained something valuable from this blog. If you like PATs,
+  then I think you should also consider using
+  <a href="https://github.com/OsagieDG/sap.git">SAP</a>,
+  the automation tool that allows you to switch between multiple GitHub accounts.
+  Thanks for reading!
+  </p>
 
   <div class="links">
     <a href="posts">Back to Posts</a>
