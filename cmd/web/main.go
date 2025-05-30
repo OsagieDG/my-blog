@@ -7,17 +7,19 @@ import (
 	"net/http"
 
 	"github.com/OsagieDG/mlog/service/middleware"
+	embedStatic "github.com/OsagieDG/osagiedg.me/static"
+	tmplEmbed "github.com/OsagieDG/osagiedg.me/tmpl"
 	"github.com/go-chi/chi/v5"
 )
 
-var templates = map[string]*template.Template{}
+var tmpl = map[string]*template.Template{}
 
 func main() {
-	templates = parseTemplates()
+	tmpl = parseTemplates()
 
 	router := chi.NewRouter()
 
-	router.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	router.Handle("/static/*", http.StripPrefix("/static/", http.FileServerFS(embedStatic.Static)))
 
 	router.Get("/", handler("about"))
 	router.Get("/about", handler("about"))
@@ -41,7 +43,7 @@ func main() {
 
 func handler(name string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		tmpl, ok := templates[name]
+		tmpl, ok := tmpl[name]
 		if !ok {
 			http.Error(w, "Template not found", http.StatusNotFound)
 			return
@@ -55,14 +57,14 @@ func handler(name string) http.HandlerFunc {
 }
 
 func parseTemplates() map[string]*template.Template {
-	layout := "tmpl/layout.tmpl"
-	about := "tmpl/about.tmpl"
-	projects := "tmpl/projects.tmpl"
-	posts := "tmpl/posts.tmpl"
-	blog1 := "tmpl/blog/blog1/blog1.tmpl"
-	blog2 := "tmpl/blog/blog2/blog2.tmpl"
+	layout := "layout.html"
+	about := "about.tmpl"
+	projects := "projects.tmpl"
+	posts := "posts.tmpl"
+	blog1 := "blog/blog1/blog1.tmpl"
+	blog2 := "blog/blog2/blog2.tmpl"
 
-	templates := map[string]*template.Template{
+	tmpl := map[string]*template.Template{
 		"about":    parseTemplateFiles(layout, about),
 		"projects": parseTemplateFiles(layout, projects),
 		"posts":    parseTemplateFiles(layout, posts),
@@ -70,11 +72,11 @@ func parseTemplates() map[string]*template.Template {
 		"blog2":    parseTemplateFiles(layout, blog2),
 	}
 
-	return templates
+	return tmpl
 }
 
-func parseTemplateFiles(files ...string) *template.Template {
-	tmpl, err := template.ParseFiles(files...)
+func parseTemplateFiles(layout, content string) *template.Template {
+	tmpl, err := template.New("layout.html").ParseFS(tmplEmbed.Files, layout, content)
 	if err != nil {
 		log.Fatalf("Error parsing templates: %v", err)
 	}
