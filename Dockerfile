@@ -1,8 +1,8 @@
-FROM golang:1.23-alpine
+FROM golang:1.23-alpine AS builder
 
 WORKDIR /app
 
-COPY go.mod ./
+COPY go.mod go.sum ./
 
 RUN go mod download
 
@@ -10,4 +10,10 @@ COPY . .
 
 RUN go build -o bin/app ./cmd/web
 
-CMD ["./bin/app"]
+FROM alpine:latest AS final
+
+WORKDIR /app
+
+COPY --from=builder /app/bin/app ./bin/app
+
+ENTRYPOINT ["./bin/app"]
