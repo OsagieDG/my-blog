@@ -21,7 +21,6 @@ func main() {
 
 	router.Get("/", handler("about"))
 	router.Get("/about", handler("about"))
-	router.Get("/tools", handler("tools"))
 	router.Get("/projects", handler("projects"))
 	router.Get("/posts", handler("posts"))
 	router.Get("/blog1", handler("blog1"))
@@ -58,7 +57,6 @@ func handler(name string) http.HandlerFunc {
 func parseTemplates() map[string]*template.Template {
 	layout := "tmpl/layout.tmpl"
 	about := "tmpl/about.tmpl"
-	tools := "tmpl/tools.tmpl"
 	projects := "tmpl/projects.tmpl"
 	posts := "tmpl/posts.tmpl"
 	blog1 := "tmpl/blog/blog1/blog1.tmpl"
@@ -66,7 +64,6 @@ func parseTemplates() map[string]*template.Template {
 
 	templates := map[string]*template.Template{
 		"about":    parseTemplateFiles(layout, about),
-		"tools":    parseTemplateFiles(layout, tools),
 		"projects": parseTemplateFiles(layout, projects),
 		"posts":    parseTemplateFiles(layout, posts),
 		"blog1":    parseTemplateFiles(layout, blog1),
