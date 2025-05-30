@@ -29,7 +29,6 @@ func main() {
 	router.Get("/blog2", handler("blog2"))
 
 	mlog := middleware.MLog(
-		middleware.LogRequest,
 		middleware.LogResponse,
 		middleware.RecoverPanic,
 	)
