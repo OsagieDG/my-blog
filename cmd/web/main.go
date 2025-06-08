@@ -27,6 +27,7 @@ func main() {
 	router.Get("/posts", handler("posts"))
 	router.Get("/blog1", handler("blog1"))
 	router.Get("/blog2", handler("blog2"))
+	router.Get("/blog3", handler("blog3"))
 
 	mlog := middleware.MLog(
 		middleware.LogResponse,
@@ -62,6 +63,7 @@ func parseTemplates() map[string]*template.Template {
 	posts := "posts.tmpl"
 	blog1 := "blog/blog1/blog1.tmpl"
 	blog2 := "blog/blog2/blog2.tmpl"
+	blog3 := "blog/blog3/blog3.tmpl"
 
 	tmpl := map[string]*template.Template{
 		"about":    parseTemplateFiles(layout, about),
@@ -69,6 +71,7 @@ func parseTemplates() map[string]*template.Template {
 		"posts":    parseTemplateFiles(layout, posts),
 		"blog1":    parseTemplateFiles(layout, blog1),
 		"blog2":    parseTemplateFiles(layout, blog2),
+		"blog3":    parseTemplateFiles(layout, blog3),
 	}
 
 	return tmpl
