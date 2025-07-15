@@ -23,7 +23,6 @@ func main() {
 
 	router.Get("/", handler("about"))
 	router.Get("/about", handler("about"))
-	router.Get("/projects", handler("projects"))
 	router.Get("/posts", handler("posts"))
 	router.Get("/blog1", handler("blog1"))
 	router.Get("/blog2", handler("blog2"))
@@ -59,19 +58,17 @@ func handler(name string) http.HandlerFunc {
 func parseTemplates() map[string]*template.Template {
 	layout := "layout.html"
 	about := "about.tmpl"
-	projects := "projects.tmpl"
 	posts := "posts.tmpl"
 	blog1 := "blog/blog1/blog1.tmpl"
 	blog2 := "blog/blog2/blog2.tmpl"
 	blog3 := "blog/blog3/blog3.tmpl"
 
 	tmpl := map[string]*template.Template{
-		"about":    parseTemplateFiles(layout, about),
-		"projects": parseTemplateFiles(layout, projects),
-		"posts":    parseTemplateFiles(layout, posts),
-		"blog1":    parseTemplateFiles(layout, blog1),
-		"blog2":    parseTemplateFiles(layout, blog2),
-		"blog3":    parseTemplateFiles(layout, blog3),
+		"about": parseTemplateFiles(layout, about),
+		"posts": parseTemplateFiles(layout, posts),
+		"blog1": parseTemplateFiles(layout, blog1),
+		"blog2": parseTemplateFiles(layout, blog2),
+		"blog3": parseTemplateFiles(layout, blog3),
 	}
 
 	return tmpl
