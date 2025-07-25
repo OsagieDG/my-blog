@@ -19,14 +19,14 @@ func main() {
 
 	router := chi.NewRouter()
 
-	router.Handle("/static/*", http.StripPrefix("/static/", http.FileServerFS(embedStatic.Static)))
+	router.Handle("/static/*", http.StripPrefix("/static/",
+		http.FileServerFS(embedStatic.Static)))
 
 	router.Get("/", handler("about"))
 	router.Get("/about", handler("about"))
 	router.Get("/posts", handler("posts"))
-	router.Get("/blog1", handler("blog1"))
-	router.Get("/blog2", handler("blog2"))
-	router.Get("/blog3", handler("blog3"))
+	router.Get("/post1", handler("post1"))
+	router.Get("/post2", handler("post2"))
 
 	mlog := middleware.MLog(
 		middleware.LogResponse,
@@ -49,7 +49,8 @@ func handler(name string) http.HandlerFunc {
 		}
 		err := tmpl.ExecuteTemplate(w, "layout", nil)
 		if err != nil {
-			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+			http.Error(w, "Internal Server Error",
+				http.StatusInternalServerError)
 			log.Println("Error rendering template:", err)
 		}
 	}
@@ -59,23 +60,22 @@ func parseTemplates() map[string]*template.Template {
 	layout := "layout.html"
 	about := "about.tmpl"
 	posts := "posts.tmpl"
-	blog1 := "blog/blog1/blog1.tmpl"
-	blog2 := "blog/blog2/blog2.tmpl"
-	blog3 := "blog/blog3/blog3.tmpl"
+	post1 := "post/post1/post1.tmpl"
+	post2 := "post/post2/post2.tmpl"
 
 	tmpl := map[string]*template.Template{
 		"about": parseTemplateFiles(layout, about),
 		"posts": parseTemplateFiles(layout, posts),
-		"blog1": parseTemplateFiles(layout, blog1),
-		"blog2": parseTemplateFiles(layout, blog2),
-		"blog3": parseTemplateFiles(layout, blog3),
+		"post1": parseTemplateFiles(layout, post1),
+		"post2": parseTemplateFiles(layout, post2),
 	}
 
 	return tmpl
 }
 
 func parseTemplateFiles(layout, content string) *template.Template {
-	tmpl, err := template.New("layout.html").ParseFS(tmplEmbed.Files, layout, content)
+	tmpl, err := template.New("layout.html").ParseFS(tmplEmbed.Files,
+		layout, content)
 	if err != nil {
 		log.Fatalf("Error parsing templates: %v", err)
 	}

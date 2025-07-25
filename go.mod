@@ -1,6 +1,6 @@
 module github.com/OsagieDG/osagiedg.me
 
-go 1.23
+go 1.23.10
 
 require (
 	github.com/OsagieDG/mlog v1.0.0

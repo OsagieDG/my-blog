@@ -135,9 +135,7 @@ body {
   height: 32px;
   background-color: lightblue;
   margin-bottom: 20px;
-  /* Adjust the margin as needed */
   border-bottom: 2px solid var(--bordercolor);
-  /* Add a border to make it straight */
 }
 
 .links {
