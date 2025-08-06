@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function showPage(page) {
     items.forEach((item, index) => {
-      item.style.display = index >= (page - 1) * itemsPerPage && index < page * itemsPerPage ? 'block' : 'none';
+      item.style.display = index >= (page - 1) * itemsPerPage &&
+        index < page * itemsPerPage ? 'block' : 'none';
     });
   }
 
@@ -33,13 +34,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     paginationContainer.appendChild(createButton('Latest', 1));
 
-    paginationContainer.appendChild(createButton('Back', currentPage > 1 ? currentPage - 1 : 1));
+    paginationContainer.appendChild(createButton('Back',
+      currentPage > 1 ? currentPage - 1 : 1));
 
     for (let i = 1; i <= numPages; i++) {
       paginationContainer.appendChild(createButton(i, i));
     }
 
-    paginationContainer.appendChild(createButton('Next', currentPage < numPages ? currentPage + 1 : numPages));
+    paginationContainer.appendChild(createButton('Next',
+      currentPage < numPages ? currentPage + 1 : numPages));
 
     paginationContainer.appendChild(createButton('First', numPages));
 
