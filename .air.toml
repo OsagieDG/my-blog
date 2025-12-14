@@ -1,6 +1,6 @@
 [build]
 cmd = "go build -o bin/app cmd/web/main.go"
-bin = "bin/app"
+entrypoint = "bin/app"
 include_ext = ["go", "tmpl", "html", "css"]
 
 [run]
