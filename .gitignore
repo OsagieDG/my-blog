@@ -23,3 +23,9 @@ go.work
 bin
 
 tmp
+
+.DS_Store
+static/.DS_Store
+tmpl/.DS_Store
+cmd/.DS_Store
+
