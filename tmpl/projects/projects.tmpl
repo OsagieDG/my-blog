@@ -1,28 +1,18 @@
 {{template "layout" .}}
-
 {{define "title"}}My Projects{{end}}
-
 {{define "main"}}
-
 <div class="title" style="margin-bottom: 2.5rem;">
     <h1 style="color: lightblue;">My Projects</h1>
 </div>
-
 <div class="toc">
     <ul style="list-style: none; padding: 0;">
-        <li
-            class="project"
-            style="margin-bottom: 2rem; max-width: 50%;"
-        >
-            <a
-                href="https://bearctive.com"
+        <li class="project" style="margin-bottom: 3rem; max-width: 50%;">
+            <a href="https://bearctive.com"
                 class="project-link"
                 style="display: flex; align-items: flex-start; text-decoration: none; color: inherit;"
                 onmouseover="this.querySelector('h2').style.color='#4da3ff';"
                 onmouseout="this.querySelector('h2').style.color='inherit';"
             >
-
-
                 <div
                     class="project-info"
                     style="display: flex; flex-direction: column; align-items: flex-start;"
@@ -37,34 +27,55 @@
                     <h2 style="margin: 0;">Be ARCtive</h2>
                 </div>
             </a>
-
             <p style="margin-top: 0.5rem;">
-                A health and fitness app focused on building consistency
-                and resilience. Available on iOS/watchOS.
-           </p>
-
-           <p style="margin-top: 0.5rem;">
-           <strong>Features include:</strong> <br>
-           i) <strong>Core Tracking:</strong> Tracks daily steps, calories burned, and distance covered, then calculates your pace for a metrics dashboard.<br><br>
-           ii) <strong>Activity Logging:</strong> Features a timer and a route map that displays your exercise metrics directly on the map view.<br><br>
-           iii) <strong>Goals & Motivation:</strong> Includes targets and achievements for weekly distance and calories burned.<br><br>
-           iv) <strong>Configuration:</strong> The settings page allows you to set/modify notifications and manage permissions.
-           </p>
-
+                A health and fitness app for runners focused on building
+                consistency and resilience. Available on iOS/watchOS.
+            </p>
             <p style="margin-top: 1rem;">
-            <a
-            href="https://bearctive.com/info"
-            style="color: #4da3ff; text-decoration: underline;"
-            onmouseover="this.style.color='#1e90ff';"
-            onmouseout="this.style.color='#4da3ff';"
+                <a href="https://bearctive.com/features"
+                    style="color: #4da3ff; text-decoration: underline;"
+                    onmouseover="this.style.color='#1e90ff';"
+                    onmouseout="this.style.color='#4da3ff';"
+                >
+                    Learn more about this project
+                </a>
+            </p>
+        </li>
+        <li class="project" style="margin-bottom: 3rem; max-width: 50%;">
+            <a href="https://arctivestudio.app"
+                class="project-link"
+                style="display: flex; align-items: flex-start; text-decoration: none; color: inherit;"
+                onmouseover="this.querySelector('h2').style.color='#4da3ff';"
+                onmouseout="this.querySelector('h2').style.color='inherit';"
             >
-            Learn more about this project
-        </a>
-    </p>
+                <div
+                    class="project-info"
+                    style="display: flex; flex-direction: column; align-items: flex-start;"
+                >
+                    <img
+                        src="/static/images/ARCtiveStudioLarge.jpeg"
+                        alt="ARCtive Studio logo"
+                        width="100"
+                        height="98"
+                        style="margin-bottom: 0.5rem; margin-left: 14px;"
+                    />
+                    <h2 style="margin: 0;">ARCtive Studio</h2>
+                </div>
+            </a>
+            <p style="margin-top: 0.5rem;">
+                Overlay your workout metrics and route on images
+                using our Composer. Available on iOS.
+            </p>
+            <p style="margin-top: 1rem;">
+                <a href="https://arctivestudio.app"
+                    style="color: #4da3ff; text-decoration: underline;"
+                    onmouseover="this.style.color='#1e90ff';"
+                    onmouseout="this.style.color='#4da3ff';"
+                >
+                    Learn more about this project
+                </a>
+            </p>
         </li>
     </ul>
-
- </div>
-
+</div>
 {{end}}
-
