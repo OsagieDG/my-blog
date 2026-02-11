@@ -31,6 +31,7 @@ func main() {
 	router.Get("/post3", handler("post3"))
 	router.Get("/post4", handler("post4"))
 	router.Get("/post5", handler("post5"))
+	router.Get("/post6", handler("post6"))
 	router.Get("/projects", handler("projects"))
 
 	mlog := middleware.MLog(
@@ -71,6 +72,7 @@ func parseTemplates() map[string]*template.Template {
 	post3 := "post/post3/post3.tmpl"
 	post4 := "post/post4/post4.tmpl"
 	post5 := "post/post5/post5.tmpl"
+	post6 := "post/post6/post6.tmpl"
 	projects := "projects/projects.tmpl"
 
 	tmpl := map[string]*template.Template{
@@ -82,6 +84,7 @@ func parseTemplates() map[string]*template.Template {
 		"post3":    parseTemplateFiles(layout, post3),
 		"post4":    parseTemplateFiles(layout, post4),
 		"post5":    parseTemplateFiles(layout, post5),
+		"post6":    parseTemplateFiles(layout, post6),
 		"projects": parseTemplateFiles(layout, projects),
 	}
 

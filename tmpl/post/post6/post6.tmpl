@@ -1,0 +1,91 @@
+{{template "layout" .}}
+{{define "title"}}App Development and Workflow Update{{end}}
+{{define "main"}}
+  <div class="header">
+    <h1 style="color: lightblue;">App Development and Workflow Update</h1>
+  </div>
+  <div class="author-info">
+    <img class="author-img" src="static/images/o.jpeg" alt="Osagie Godstand">
+    <div class="text-sm">
+      By Osagie Godstand
+      on Feb 11, 2026
+    </div>
+  </div>
+  <div class="content">
+    <p>
+       <a href="https://bearctive.com">Be ARCtive</a> got updated again, but this time it is more focused.
+      I decided to remove the targets feature because I want to focus more on the
+      timer/route map feature, and I believe it no longer aligns with my plans for Be ARCtive.
+      I honestly wasn't using it. For anyone who uses an Apple Watch, I'm sure you know
+      about the Activity app. It is honestly amazing how good it is.
+      This, and my decision to focus more on the timer/route map features,
+      are the reasons why I decided to remove the target feature
+      in the new update of Be ARCtive.
+    </p>
+
+    <h2>What's New in This Version</h2>
+    <p>
+      The latest update brings several improvements focused on enhancing the core workout tracking experience:
+    </p>
+    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 1rem;">
+      <li style="margin-bottom: 0.5rem;">Improved UI/UX for Phone and Watch Apps</li>
+      <li style="margin-bottom: 0.5rem;">Consistent metric card display for route map on view and share</li>
+      <li style="margin-bottom: 0.5rem;">Added ability to choose between Run/Walk workouts for Phone and Watch Apps</li>
+      <li style="margin-bottom: 0.5rem;">Watch App now uses a stopwatch instead of a countdown timer</li>
+      <li style="margin-bottom: 0.5rem;">You can now choose your preferred unit (km or miles) for distance and pace</li>
+    </ul>
+
+    <h2>What's Next?</h2>
+    <p>
+      The limitations of the apps I have built are that they are more client-side focused,
+      and as someone who really enjoys building backends, I want to build some full-stack projects/products.
+      However, I will continue to develop and maintain <a href="https://bearctive.com">Be ARCtive</a>
+      and <a href="https://arctivestudio.app">ARCtive Studio</a> .
+      Speaking of full-stack projects, remember Wreyte?
+    </p>
+
+    <h2>Progress on the Development of Wreyte (Writers' Platform)</h2>
+    <p>
+      I am still building Wreyte, although development has really slowed down over the past 5-6 months.
+      Despite the slow progress, it's been going well. There were many times I thought about rewriting
+      it due to the tech stack I chose, but I decided to stick with this method of developing the app
+      as I believe it is sufficient despite the limitations, and my workflow
+      with this current stack is honestly amazing.
+    </p>
+    <p>
+      The tech stack I am using for Wreyte is Go, Postgres, Docker, Docker Compose, Nginx,
+      HTML, CSS, and Vanilla JavaScript with jsDoc, including type checking with ts-check.
+      I chose this tech stack because it was what I knew at the time, although if I were to
+      start a new project from scratch today, I would most likely use a framework.
+      I hope to release the app this year, but there are no guarantees as
+      I am now working on other projects and I do not want to rush
+      the development of this app.
+    </p>
+
+    <img src="static/images/linux.png" alt="linux" loading="lazy">
+
+
+    <h2>Development Workflow Update</h2>
+    <p>
+      To conclude, my development workflow has changed since the last time I posted about it.
+      Currently, I am using both Mac and Linux. Wreyte is and will continue to be built using
+      my Linux PC, and everything to do with iOS development is obviously being done using my Mac.
+      I managed to get my workflow on Mac to be similar to my Linux workflow,
+      although it is still not as good.
+    </p>
+    <p>
+      Lately, I have been using Xcode more for iOS development as it is essential for
+      certain aspects of the building, debugging, and deployment process.
+      I still use the terminal for the majority of my development, and that will not change.
+      I have just learned to adapt, and it's great having a tiling window manager on Mac just like Linux,
+      as it allows me to switch from terminal to IDE pretty quickly.
+    </p>
+    <p>
+      Well, that's it for now, and I hope to keep sharing more interesting updates in the future.
+    </p>
+
+    <div class="links">
+      <a href="posts">Back to Posts</a>
+    </div>
+  </div>
+{{end}}
