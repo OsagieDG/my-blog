@@ -3,8 +3,9 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"log"
+	"log/slog"
 	"net/http"
+	"os"
 
 	"github.com/OsagieDG/mlog/service/middleware"
 	embedStatic "github.com/OsagieDG/osagiedg.me/static"
@@ -12,27 +13,25 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-var tmpl = map[string]*template.Template{}
-
 func main() {
-	tmpl = parseTemplates()
+	tmpl := parseTemplates()
 
 	router := chi.NewRouter()
 
 	router.Handle("/static/*", http.StripPrefix("/static/",
 		http.FileServerFS(embedStatic.Static)))
 
-	router.Get("/", handler("about"))
-	router.Get("/about", handler("about"))
-	router.Get("/hobbies", handler("hobbies"))
-	router.Get("/posts", handler("posts"))
-	router.Get("/post1", handler("post1"))
-	router.Get("/post2", handler("post2"))
-	router.Get("/post3", handler("post3"))
-	router.Get("/post4", handler("post4"))
-	router.Get("/post5", handler("post5"))
-	router.Get("/post6", handler("post6"))
-	router.Get("/projects", handler("projects"))
+	router.Get("/", handler("about", tmpl))
+	router.Get("/about", handler("about", tmpl))
+	router.Get("/hobbies", handler("hobbies", tmpl))
+	router.Get("/posts", handler("posts", tmpl))
+	router.Get("/post1", handler("post1", tmpl))
+	router.Get("/post2", handler("post2", tmpl))
+	router.Get("/post3", handler("post3", tmpl))
+	router.Get("/post4", handler("post4", tmpl))
+	router.Get("/post5", handler("post5", tmpl))
+	router.Get("/post6", handler("post6", tmpl))
+	router.Get("/projects", handler("projects", tmpl))
 
 	mlog := middleware.MLog(
 		middleware.LogResponse,
@@ -42,22 +41,23 @@ func main() {
 	fmt.Println("Server is running on :8080")
 	err := http.ListenAndServe(":8080", mlog(router))
 	if err != nil {
-		log.Fatal("Error starting server: ", err)
+		slog.Error("Error starting server", "err", err)
+		os.Exit(1)
 	}
 }
 
-func handler(name string) http.HandlerFunc {
+func handler(name string, tmpl map[string]*template.Template) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		tmpl, ok := tmpl[name]
+		t, ok := tmpl[name]
 		if !ok {
 			http.Error(w, "Template not found", http.StatusNotFound)
 			return
 		}
-		err := tmpl.ExecuteTemplate(w, "layout", nil)
+		err := t.ExecuteTemplate(w, "layout", nil)
 		if err != nil {
 			http.Error(w, "Internal Server Error",
 				http.StatusInternalServerError)
-			log.Println("Error rendering template:", err)
+			slog.Error("Error rendering template", "err", err)
 		}
 	}
 }
@@ -95,7 +95,8 @@ func parseTemplateFiles(layout, content string) *template.Template {
 	tmpl, err := template.New("layout.html").ParseFS(tmplEmbed.Files,
 		layout, content)
 	if err != nil {
-		log.Fatalf("Error parsing templates: %v", err)
+		slog.Error("Error parsing templates", "err", err)
+		os.Exit(1)
 	}
 	return tmpl
 }
